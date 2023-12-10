@@ -77,7 +77,7 @@ FROM Followers
 WHERE UserID = ?
 GROUP BY UserID;
 
---
+--for seller page to show info and products
 SELECT
     S.SellerID,
     S.Username AS SellerUsername,
