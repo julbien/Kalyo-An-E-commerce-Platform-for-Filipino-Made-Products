@@ -1,0 +1,92 @@
+--for ordering
+INSERT INTO Orders (UserID, Address, ShippingOption, PaymentMethod, AdditionalOffer)
+VALUES (?, ?, ?, ?, ?);
+
+--for cart
+INSERT INTO Cart (UserID, ProductID, Quantity)
+VALUES (?,?,?);
+
+--adding rate
+INSERT INTO Ratings (ProductID, UserID, Rate, Comment)
+VALUES (?,?,?,?);
+
+--for following
+INSERT INTO Followers (UserID, FollowerUserID)
+VALUES (?, ?);
+
+--for seller's follower
+INSERT INTO Followers (UserID, FollowerUserID)
+VALUES (?, ?);
+
+-- Inserting 10 rows of test data
+
+-- Ratings table
+INSERT INTO Ratings (ProductID, UserID, Rate, Comment)
+VALUES
+    (1, 1, 4, 'Great product!'),
+    (2, 2, 3, 'Nice craftsmanship'),
+    (3, 3, 5, 'Delicious!'),
+    (4, 4, 4, 'Beautiful sound'),
+    (5, 5, 4, 'Amazing art piece'),
+    (1, 6, 5, 'Perfect fit'),
+    (2, 7, 3, 'Unique design'),
+    (3, 8, 4, 'Authentic flavor'),
+    (4, 9, 5, 'Love the traditional touch'),
+    (5, 10, 4, 'Impressive details');
+
+-- Orders table
+INSERT INTO Orders (UserID, Address, ShippingOption, PaymentMethod, AdditionalOffer)
+VALUES
+    (1, 'Manila', 'Express Shipping', 'Credit Card', 'Gift wrapping'),
+    (2, 'Cebu', 'Standard Shipping', 'PayPal', 'Free shipping promo'),
+    (3, 'Davao', 'Standard Shipping', 'Cash on Delivery', NULL),
+    (4, 'Quezon City', 'Express Shipping', 'Credit Card', 'Discount code: SALE10'),
+    (5, 'Makati', 'Express Shipping', 'PayPal', NULL),
+    (6, 'Pasig', 'Standard Shipping', 'Cash on Delivery', 'Free gift included'),
+    (7, 'Taguig', 'Express Shipping', 'Credit Card', 'Birthday special'),
+    (8, 'Iloilo', 'Standard Shipping', 'PayPal', NULL),
+    (9, 'Zamboanga', 'Express Shipping', 'Cash on Delivery', 'Limited-time offer'),
+    (10, 'Antipolo', 'Standard Shipping', 'Credit Card', 'Early bird discount');
+
+-- Cart table
+INSERT INTO Cart (UserID, ProductID, Quantity)
+VALUES
+    (1, 1, 2),
+    (2, 2, 1),
+    (3, 3, 3),
+    (4, 4, 2),
+    (5, 5, 1),
+    (6, 1, 2),
+    (7, 2, 1),
+    (8, 3, 3),
+    (9, 4, 2),
+    (10, 5, 1);
+
+-- Transactions table
+INSERT INTO Transactions (UserID, OrderID)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5),
+    (6, 6),
+    (7, 7),
+    (8, 8,
+    (9, 9),
+    (10, 10);
+
+-- Followers table
+INSERT INTO Followers (UserID, SellerID, FollowerUserID)
+VALUES
+    (1, 1, 2),
+    (2, 2, 3),
+    (3, 3, 4),
+    (4, 4, 5),
+    (5, 5, 6),
+    (6, 1, 7),
+    (7, 2, 8,
+    (8, 3, 9),
+    (9, 4, 10),
+    (10, 5, 1);
+
