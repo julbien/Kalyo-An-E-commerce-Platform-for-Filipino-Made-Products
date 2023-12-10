@@ -1,3 +1,5 @@
+CREATE DATABASE kalyo;
+
 -- User Table
 CREATE TABLE Users (
     UserID INT PRIMARY KEY,
