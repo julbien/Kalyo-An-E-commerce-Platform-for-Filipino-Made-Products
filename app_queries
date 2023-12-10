@@ -1,0 +1,102 @@
+--Query for finding a specific product
+SELECT
+    Products.ProductID,
+    Products.Name AS ProductName,
+    Products.Ratings,
+    Categories.CategoryName,
+    Sellers.FullName AS SellerName
+FROM
+    Products
+    JOIN Categories ON Products.CategoryID = Categories.CategoryID
+    JOIN Sellers ON Products.SellerID = Sellers.SellerID
+WHERE
+    Products.Name = '?;
+
+--Query for log in 
+-- For regular users
+SELECT * FROM Users
+WHERE Username = '?' AND Password = '?';
+
+-- For sellers
+SELECT * FROM Sellers
+WHERE Username = '?' AND Password = '?';
+
+--Query for viewing a product in category (if specific)
+SELECT
+    Products.ProductID,
+    Products.Name AS ProductName,
+    Products.Ratings,
+    Products.CategoryID,
+    Categories.CategoryName
+FROM
+    Products
+JOIN
+    Categories ON Products.CategoryID = Categories.CategoryID
+WHERE
+    Categories.CategoryName = '?';
+
+--Query for viewing a product in category (if all)
+SELECT
+    Products.ProductID,
+    Products.Name AS ProductName,
+    Products.Ratings,
+    Categories.CategoryID,
+    Categories.CategoryName
+FROM
+    Products
+JOIN
+    Categories ON Products.CategoryID = Categories.CategoryID;
+
+--Query for getting the total payment for a specific order
+SELECT 
+    O.OrderID,
+    O.UserID,
+    O.Address,
+    O.ShippingOption,
+    O.PaymentMethod,
+    SUM(P.Price * C.Quantity) AS TotalPayment
+FROM 
+    Orders O
+JOIN 
+    Cart C ON O.OrderID = C.OrderID
+JOIN 
+    Products P ON C.ProductID = P.ProductID
+WHERE 
+    O.OrderID = ?
+GROUP BY 
+    O.OrderID, O.UserID, O.Address, O.ShippingOption, O.PaymentMethod;
+
+--Count total followers across all sellers
+SELECT UserID, COUNT(FollowerID) AS FollowerCount
+FROM Followers
+GROUP BY UserID;
+
+-- Count followers for each seller 
+SELECT UserID, COUNT(FollowerID) AS FollowerCount
+FROM Followers
+WHERE UserID = ?
+GROUP BY UserID;
+
+--
+SELECT
+    S.SellerID,
+    S.Username AS SellerUsername,
+    S.FullName AS SellerFullName,
+    S.SellerInfo,
+    F.FollowerID,
+    U.Username AS FollowerUsername,
+    P.ProductID,
+    P.Name AS ProductName,
+    P.Ratings
+FROM
+    Sellers S
+LEFT JOIN
+    Followers F ON S.SellerID = F.UserID
+LEFT JOIN
+    Users U ON F.FollowerUserID = U.UserID
+LEFT JOIN
+    Products P ON S.SellerID = P.SellerID
+WHERE
+    S.SellerID = ?;
+
+
